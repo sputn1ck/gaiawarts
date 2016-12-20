@@ -29,10 +29,14 @@ app.get('/tweet', function (req, res) {
         }
     var s = req.query.points + " Points for " + house + r;
     console.log(s);
-  T.post('statuses/update', { status: s }, function(err, data, response) {
+  /*T.post('statuses/update', { status: s }, function(err, data, response) {
   console.log(data)
-});
+});*/
   res.redirect('https://twitter.com/GaiaWarts');
 });
 
+app.get('/', function(req,res) {
+  res.sendFile(__dirname + '/index.html')
+})
 app.listen(process.env.PORT);
+//app.listen('8080')
