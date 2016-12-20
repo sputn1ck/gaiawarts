@@ -32,7 +32,7 @@ app.get('/tweet', function (req, res) {
   T.post('statuses/update', { status: s }, function(err, data, response) {
   console.log(data)
 });
-  res.send(s);
+  res.redirect('https://twitter.com/GaiaWarts');
 });
 
 app.listen(process.env.PORT);
