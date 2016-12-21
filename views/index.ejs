@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+    Entries awaiting Approval
+  <ul class="tweetReqs">
+  <% for(var i=0; i<tweetReqs.length; i++) {%>
+    <li class="tweetReqs">
+      <span><%= tweetReqs[i].house %></span>
+      <span><%= tweetReqs[i].points %></span>
+      <span><%= tweetReqs[i].reason %></span>
+      <span><%= tweetReqs[i].approvals %></span>
+      <span><a href="/approve/<%= tweetReqs[i]._id %>/<%= housepw %>" title="approve">Approve</a>
+    </span>
+    </li>
+  <% } %>
+  </ul>
+
+  <body>
+    Add Entry
+  <form action="/tweet/<%= housepw %>" method="GET">
+  <input type="number" name="points">
+  <select name="house">
+  <option value="g">Gryffindor</option>
+  <option value="h">Hufflepuff</option>
+  <option value="r">Ravenclaw</option>
+  <option value="s">Slytherin</option>
+</select>
+  <input type="text" placeholder="reason" name="reason">
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>
