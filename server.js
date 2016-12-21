@@ -17,9 +17,9 @@ var T = new Twit({
 
 function tweet(s) {
   var s = s.points + " Points for " + s.house +". Reason: " + s.reason;
-  T.post('statuses/update', { status: s }, function(err, data, response) {
-  console.log(data)
-});
+  //T.post('statuses/update', { status: s }, function(err, data, response) {
+  //console.log(data)
+//});
 }
 const MongoClient = require('mongodb').MongoClient
 
@@ -35,6 +35,10 @@ app.get('/tweet', function (req, res) {
         house = "Hufflepuff";
         } else if(req.query.house == "s"){
             house = "Slytherin";
+        }
+        else {
+          res.redirect('/'+req.query.housepw);
+          return;
         }
         var r = ""
         if(req.query.reason != undefined){
@@ -74,7 +78,12 @@ app.get('/approve/:id/:housepw', function(req, res) {
   db.collection('tweetReqs').update({"_id":o_id}, {$addToSet:{"approvals":house}}, function(err) {
     db.collection('tweetReqs').find({"_id":o_id}).toArray(function(err, results) {
       if(results[0] != undefined){
-      if(results[0].approvals.length >= 3) {
+      if(results[0].points<=0&&results[0].approvals.length >= 2) {
+        console.log("contains");
+        tweet(results[0]);
+        db.collection('tweetReqs').remove({"_id":o_id});
+       }
+       if(results[0].approvals.length >= 3) {
         console.log("contains");
         tweet(results[0]);
         db.collection('tweetReqs').remove({"_id":o_id});
@@ -109,7 +118,7 @@ MongoClient.connect('mongodb://bob:reinreinrein@ds141088.mlab.com:41088/gaiawart
     if (err) return console.log(err)
   db = database
   app.listen(port, () => {
-    console.log('listening on ')
+    console.log('listening on ' + port)
   })
 })
 //app.listen('8080')
