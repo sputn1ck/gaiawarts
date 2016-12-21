@@ -4,9 +4,12 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
+    "install": "^0.8.4",
     "mongodb": "^2.2.16",
+    "npm": "^4.0.5",
     "twit": "2.2.5"
   },
   "devDependencies": {},

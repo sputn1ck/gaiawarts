@@ -86,10 +86,21 @@ app.get('/approve/:id/:housepw', function(req, res) {
 });
 
 app.get('/:housepw', function(req,res) {
+  if(req.query.housepw != undefined) {
+    res.redirect('/'+req.query.housepw);
+  }
   db.collection('tweetReqs').find().toArray((err, result) => {
     if (err) return console.log(err)
     // renders index.ejs
     res.render('index.ejs', {tweetReqs: result, housepw: req.params.housepw});
+  })
+})
+
+app.get('/', function(req,res) {
+  db.collection('tweetReqs').find().toArray((err, result) => {
+    if (err) return console.log(err)
+    // renders index.ejs
+    res.render('login.ejs');
   })
 })
 
@@ -98,7 +109,7 @@ MongoClient.connect('mongodb://bob:reinreinrein@ds141088.mlab.com:41088/gaiawart
     if (err) return console.log(err)
   db = database
   app.listen(port, () => {
-    console.log('listening on 8080')
+    console.log('listening on ')
   })
 })
 //app.listen('8080')
