@@ -17,9 +17,9 @@ var T = new Twit({
 
 function tweet(s) {
   var s = s.points + " Points for " + s.house +". Reason: " + s.reason;
-  //T.post('statuses/update', { status: s }, function(err, data, response) {
-  //console.log(data)
-//});
+  T.post('statuses/update', { status: s }, function(err, data, response) {
+  console.log(data)
+});
 }
 const MongoClient = require('mongodb').MongoClient
 
