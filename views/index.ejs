@@ -9,9 +9,12 @@
   <ul class="tweetReqs">
   <% for(var i=0; i<tweetReqs.length; i++) {%>
     <li class="tweetReqs">
+        <span><%= tweetReqs[i].points %></span>
+        <b>Points for: </b>
       <span><%= tweetReqs[i].house %></span>
-      <span><%= tweetReqs[i].points %></span>
+      <b>Reason: </b>
       <span><%= tweetReqs[i].reason %></span>
+      <b>Approved by: </b>
       <span><%= tweetReqs[i].approvals %></span>
       <span><a href="/approve/<%= tweetReqs[i]._id %>/<%= housepw %>" title="approve">Approve</a>
     </span>
@@ -21,8 +24,8 @@
 
   <body>
     Add Entry
-  <form action="/tweet/<%= housepw %>" method="GET">
-  <input type="number" name="points">
+  <form action="/tweet" method="GET">
+  <input type="number" placeholder="points" name="points">
   <select name="house">
   <option value="g">Gryffindor</option>
   <option value="h">Hufflepuff</option>
@@ -30,6 +33,7 @@
   <option value="s">Slytherin</option>
 </select>
   <input type="text" placeholder="reason" name="reason">
+  <input type="text" placeholder="housepassword" name="housepw">
   <button type="submit">Submit</button>
 </form>
 </body>

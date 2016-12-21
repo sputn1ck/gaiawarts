@@ -25,7 +25,7 @@ const MongoClient = require('mongodb').MongoClient
 
 app.set('view engine', 'ejs')
 
-app.get('/tweet/:housepw', function (req, res) {
+app.get('/tweet', function (req, res) {
     var house = ""
     if(req.query.house == "g") {
         house = "Gryffindor";
@@ -67,7 +67,7 @@ app.get('/approve/:id/:housepw', function(req, res) {
     house = "Hufflepuff";
     console.log("huf approved");
   } else {
-    res.redirect('/:error');
+    res.redirect('/' + req.params.housepw);
     return;
   }
 
