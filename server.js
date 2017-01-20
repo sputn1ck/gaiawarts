@@ -3,9 +3,10 @@ var express = require('express');
 var app = express()
 var port    = parseInt(process.env.PORT, 10) || 8080;
 var mongo = require('mongodb')
-const gpw = "harald";
+const gpw = "potter";
 const rpw = "chang"
 const hpw = "diggory"
+const spw = "malfoy"
 
 var T = new Twit({
   consumer_key:         '7fJTxgtV2xS0LI43htQ6lLz7j',
@@ -70,7 +71,9 @@ app.get('/approve/:id/:housepw', function(req, res) {
   }else if(req.params.housepw == hpw) {
     house = "Hufflepuff";
     console.log("huf approved");
-  } else {
+  } else if(req.params.housepw == spw) {
+    house = "Slytherin";
+    console.log("sly approved");}else {
     res.redirect('/' + req.params.housepw);
     return;
   }
@@ -108,7 +111,7 @@ app.get('/:housepw', function(req,res) {
 app.get('/', function(req,res) {
   db.collection('tweetReqs').find().toArray((err, result) => {
     if (err) return console.log(err)
-    // renders index.ejs
+    // renders login.ejs
     res.render('login.ejs');
   })
 })
