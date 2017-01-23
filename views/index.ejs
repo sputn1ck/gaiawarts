@@ -1,10 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <meta charset="UTF-8">
   <title>Gaiawarts Alpha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
     Entries awaiting Approval
   <ul class="tweetReqs">
   <% for(var i=0; i<tweetReqs.length; i++) {%>
@@ -22,7 +25,6 @@
   <% } %>
   </ul>
 
-  <body>
     Add Entry
   <form action="/tweet" method="GET">
   <input type="number" placeholder="points" name="points">
@@ -36,12 +38,7 @@
   <input type="text" placeholder="housepassword" name="housepw">
   <button type="submit">Submit</button>
 </form>
-</body>
-
-<body>
     <a href="https://twitter.com/GaiaWarts" title="twitter"><b>go to twitter</b></a>
-    </body>
-    <body>
         <br><br>
         Stuff:
         <ul>

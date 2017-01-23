@@ -38,8 +38,7 @@ app.get('/tweet', function (req, res) {
             house = "Slytherin";
         }
         else {
-          res.redirect('/'+req.query.housepw);
-          return;
+          res.redirect('/');
         }
         var r = ""
         if(req.query.reason != undefined){
@@ -73,9 +72,11 @@ app.get('/approve/:id/:housepw', function(req, res) {
     console.log("huf approved");
   } else if(req.params.housepw == spw) {
     house = "Slytherin";
-    console.log("sly approved");}else {
-    res.redirect('/' + req.params.housepw);
-    return;
+    console.log("sly approved");
+
+  }else {
+      res.redirect('/')
+      return;
   }
 
   db.collection('tweetReqs').update({"_id":o_id}, {$addToSet:{"approvals":house}}, function(err) {
@@ -109,11 +110,13 @@ app.get('/:housepw', function(req,res) {
 })
 
 app.get('/', function(req,res) {
+      res.render('login.ejs');
+  /*
   db.collection('tweetReqs').find().toArray((err, result) => {
     if (err) return console.log(err)
     // renders login.ejs
     res.render('login.ejs');
-  })
+  })*/
 })
 
 
